@@ -1,0 +1,23 @@
+# Palettes shown in the theme picker, in menu order.
+# Each id must match a block in assets/css/common/palettes.css.
+- id: stock
+  name: Stock
+  blurb: The original black and white
+- id: green-man
+  name: Green Man
+  blurb: Oak, ivy, moss and fern
+- id: rowan
+  name: Rowan
+  blurb: Rowan berries and hearth embers
+- id: herne
+  name: Herne
+  blurb: Antler, oak bark and peat
+- id: selkie
+  name: Selkie
+  blurb: Cold sea, seal grey and slate
+- id: lammas
+  name: Lammas
+  blurb: Ripe wheat, ochre and late sun
+- id: halcyon
+  name: Halcyon
+  blurb: The kingfisher over the river

@@ -1,0 +1,380 @@
+/*
+ * Colour palettes for the theme picker.
+ *
+ * <html> carries two attributes:
+ *   data-palette  stock | green-man | rowan | herne | selkie | lammas | halcyon
+ *   data-theme    light | dark   (resolved; "auto" is resolved by script)
+ *
+ * "stock" uses the upstream values in core/theme-vars.css and is never
+ * restyled here, so it looks exactly like upstream PaperMod.
+ *
+ * Each palette block also matches [data-preview="<id>"], so the rows in the
+ * picker menu render as small live previews of their own palette.
+ *
+ * Contrast (WCAG 2.x), checked for every non-stock palette in both modes:
+ *   body text and headings on every background  >= 7:1
+ *   secondary text, links, accent               >= 5:1
+ *   syntax colours on code blocks               >= 4.5:1
+ */
+
+/* Stock previews for the picker (same values as core/theme-vars.css) */
+[data-preview="stock"] {
+    --theme: rgb(255, 255, 255);
+    --entry: rgb(255, 255, 255);
+    --primary: rgb(30, 30, 30);
+    --secondary: rgb(108, 108, 108);
+    --content: rgb(31, 31, 31);
+    --border: rgb(238, 238, 238);
+    --accent: rgb(30, 30, 30);
+    --heading: rgb(30, 30, 30);
+}
+
+[data-theme="dark"] [data-preview="stock"] {
+    --theme: rgb(29, 30, 32);
+    --entry: rgb(46, 46, 51);
+    --primary: rgb(218, 218, 219);
+    --secondary: rgb(155, 156, 157);
+    --content: rgb(196, 196, 197);
+    --border: rgb(51, 51, 51);
+    --accent: rgb(218, 218, 219);
+    --heading: rgb(218, 218, 219);
+}
+
+/* Green Man: oak, ivy, moss and fern */
+:root[data-palette="green-man"][data-theme="light"],
+[data-theme="light"] [data-preview="green-man"] {
+    --theme: #eef3e8;
+    --entry: #f8faf4;
+    --primary: #10281a;
+    --secondary: #45604c;
+    --tertiary: #c3d4bd;
+    --content: #17301f;
+    --code-block-bg: #13261a;
+    --code-bg: #e1eadb;
+    --border: #d3e0cc;
+    --accent: #22683a;
+    --accent-soft: #d2e8cf;
+    --heading: #1b4d2c;
+    --code-keyword: #9fd88a;
+    --code-comment: #9db5a3;
+    color-scheme: light;
+}
+
+:root[data-palette="green-man"][data-theme="dark"],
+[data-theme="dark"] [data-preview="green-man"] {
+    --theme: #0d1811;
+    --entry: #15241a;
+    --primary: #e2eedd;
+    --secondary: #9db79f;
+    --tertiary: #2c4233;
+    --content: #cfdfca;
+    --code-block-bg: #09120c;
+    --code-bg: #1c2e22;
+    --border: #24382b;
+    --accent: #8fd27c;
+    --accent-soft: #21402b;
+    --heading: #b3e3a3;
+    --code-keyword: #9fd88a;
+    --code-comment: #93ab97;
+    color-scheme: dark;
+}
+
+/* Rowan: rowan berries, haws and hearth embers */
+:root[data-palette="rowan"][data-theme="light"],
+[data-theme="light"] [data-preview="rowan"] {
+    --theme: #faf1ec;
+    --entry: #fffaf7;
+    --primary: #33100d;
+    --secondary: #76504a;
+    --tertiary: #e8cfc7;
+    --content: #371a16;
+    --code-block-bg: #2a100d;
+    --code-bg: #f2e0d9;
+    --border: #efdbd3;
+    --accent: #a8201a;
+    --accent-soft: #f7d6cf;
+    --heading: #851a13;
+    --code-keyword: #ff9e7d;
+    --code-comment: #c4a39b;
+    color-scheme: light;
+}
+
+:root[data-palette="rowan"][data-theme="dark"],
+[data-theme="dark"] [data-preview="rowan"] {
+    --theme: #1b0c0b;
+    --entry: #281412;
+    --primary: #f6e2dc;
+    --secondary: #c49b93;
+    --tertiary: #4c2724;
+    --content: #e6cfc9;
+    --code-block-bg: #130807;
+    --code-bg: #351b18;
+    --border: #3b1d1a;
+    --accent: #ff8a6b;
+    --accent-soft: #4f211b;
+    --heading: #ffab92;
+    --code-keyword: #ff9e7d;
+    --code-comment: #b89892;
+    color-scheme: dark;
+}
+
+/* Herne: antler, oak bark, bracken and peat */
+:root[data-palette="herne"][data-theme="light"],
+[data-theme="light"] [data-preview="herne"] {
+    --theme: #f2eadf;
+    --entry: #faf5ee;
+    --primary: #2a1d13;
+    --secondary: #665241;
+    --tertiary: #d9c9b3;
+    --content: #302318;
+    --code-block-bg: #231911;
+    --code-bg: #e9dccb;
+    --border: #e2d4c1;
+    --accent: #874516;
+    --accent-soft: #ecd5bd;
+    --heading: #5a3216;
+    --code-keyword: #e3ab6d;
+    --code-comment: #b5a38f;
+    color-scheme: light;
+}
+
+:root[data-palette="herne"][data-theme="dark"],
+[data-theme="dark"] [data-preview="herne"] {
+    --theme: #19130e;
+    --entry: #241b14;
+    --primary: #efe3d2;
+    --secondary: #b39d82;
+    --tertiary: #46382b;
+    --content: #ddcdb7;
+    --code-block-bg: #110c08;
+    --code-bg: #30251c;
+    --border: #35291f;
+    --accent: #e0a868;
+    --accent-soft: #4b3622;
+    --heading: #f0c48f;
+    --code-keyword: #e3ab6d;
+    --code-comment: #a8978a;
+    color-scheme: dark;
+}
+
+/* Selkie: cold northern sea, seal grey and slate */
+:root[data-palette="selkie"][data-theme="light"],
+[data-theme="light"] [data-preview="selkie"] {
+    --theme: #ebf1f5;
+    --entry: #f7fafc;
+    --primary: #0c1f30;
+    --secondary: #465c70;
+    --tertiary: #c5d3df;
+    --content: #14283a;
+    --code-block-bg: #0c1a28;
+    --code-bg: #dde7ef;
+    --border: #d5e0e9;
+    --accent: #1a5a93;
+    --accent-soft: #d0e2f2;
+    --heading: #123b63;
+    --code-keyword: #7cc4f2;
+    --code-comment: #9fb1c2;
+    color-scheme: light;
+}
+
+:root[data-palette="selkie"][data-theme="dark"],
+[data-theme="dark"] [data-preview="selkie"] {
+    --theme: #0b151f;
+    --entry: #12202d;
+    --primary: #e0ebf4;
+    --secondary: #93abbf;
+    --tertiary: #2b3e50;
+    --content: #c9d9e6;
+    --code-block-bg: #070f17;
+    --code-bg: #192b3b;
+    --border: #1f3142;
+    --accent: #7dbdf0;
+    --accent-soft: #1b3b57;
+    --heading: #a8d4f5;
+    --code-keyword: #7cc4f2;
+    --code-comment: #90a4b6;
+    color-scheme: dark;
+}
+
+/* Lammas: ripe wheat, ochre and late sun */
+:root[data-palette="lammas"][data-theme="light"],
+[data-theme="light"] [data-preview="lammas"] {
+    --theme: #fbf3d9;
+    --entry: #fffaeb;
+    --primary: #2b2105;
+    --secondary: #665730;
+    --tertiary: #e6d6a3;
+    --content: #33290c;
+    --code-block-bg: #251e07;
+    --code-bg: #f1e4bd;
+    --border: #eddfb5;
+    --accent: #7f4c00;
+    --accent-soft: #f6df9c;
+    --heading: #644100;
+    --code-keyword: #f2c14e;
+    --code-comment: #bcae86;
+    color-scheme: light;
+}
+
+:root[data-palette="lammas"][data-theme="dark"],
+[data-theme="dark"] [data-preview="lammas"] {
+    --theme: #16130a;
+    --entry: #211c0e;
+    --primary: #f8eed6;
+    --secondary: #bcad84;
+    --tertiary: #473e20;
+    --content: #e8dcbb;
+    --code-block-bg: #0f0d05;
+    --code-bg: #2e2812;
+    --border: #352d16;
+    --accent: #f2c14e;
+    --accent-soft: #4c3e10;
+    --heading: #ffd572;
+    --code-keyword: #f2c14e;
+    --code-comment: #aa9f80;
+    color-scheme: dark;
+}
+
+/* Halcyon: the kingfisher over the river, teal back and ember breast */
+:root[data-palette="halcyon"][data-theme="light"],
+[data-theme="light"] [data-preview="halcyon"] {
+    --theme: #e9f4f2;
+    --entry: #f6fbfa;
+    --primary: #08292a;
+    --secondary: #3f6463;
+    --tertiary: #bdd8d5;
+    --content: #0f3233;
+    --code-block-bg: #082526;
+    --code-bg: #d7eae7;
+    --border: #cfe4e1;
+    --accent: #983a08;
+    --accent-soft: #f5dbc9;
+    --heading: #0a5353;
+    --code-keyword: #ff9f59;
+    --code-comment: #95b8b5;
+    color-scheme: light;
+}
+
+:root[data-palette="halcyon"][data-theme="dark"],
+[data-theme="dark"] [data-preview="halcyon"] {
+    --theme: #061a1b;
+    --entry: #0d2628;
+    --primary: #daf1ee;
+    --secondary: #86b0ac;
+    --tertiary: #1f4446;
+    --content: #c3e0dc;
+    --code-block-bg: #031112;
+    --code-bg: #123134;
+    --border: #163437;
+    --accent: #ffa05a;
+    --accent-soft: #4a2a13;
+    --heading: #5fd6cf;
+    --code-keyword: #ff9f59;
+    --code-comment: #8aaeaa;
+    color-scheme: dark;
+}
+
+/*
+ * Accent rules. Scoped to non-stock palettes, so stock stays identical to
+ * upstream. Links keep their underline: colour is never the only cue.
+ */
+html:not([data-palette="stock"]) .md-content a:not(.anchor),
+html:not([data-palette="stock"]) .footer a {
+    color: var(--accent);
+    text-decoration-color: color-mix(in srgb, var(--accent) 55%, transparent);
+    text-decoration-thickness: 1px;
+}
+
+html:not([data-palette="stock"]) .md-content a:not(.anchor):hover,
+html:not([data-palette="stock"]) .footer a:hover {
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 2px;
+}
+
+html:not([data-palette="stock"]) .post-title,
+html:not([data-palette="stock"]) .entry-header h2,
+html:not([data-palette="stock"]) .md-content h1,
+html:not([data-palette="stock"]) .md-content h2,
+html:not([data-palette="stock"]) .md-content h3,
+html:not([data-palette="stock"]) .logo a .term-prompt {
+    color: var(--heading);
+}
+
+html:not([data-palette="stock"]) .logo a .term-cursor {
+    background: var(--accent);
+}
+
+html:not([data-palette="stock"]) .menu a:hover {
+    color: var(--accent);
+}
+
+html:not([data-palette="stock"]) .menu .active {
+    text-decoration-color: var(--accent);
+}
+
+html:not([data-palette="stock"]) .md-content blockquote {
+    border-inline-start-color: var(--accent);
+}
+
+html:not([data-palette="stock"]) .md-content hr {
+    background: color-mix(in srgb, var(--accent) 40%, var(--tertiary));
+}
+
+html:not([data-palette="stock"]) .post-entry:hover,
+html:not([data-palette="stock"]) .post-entry:focus-within {
+    border-color: var(--accent);
+}
+
+html:not([data-palette="stock"]) .post-tags a:hover,
+html:not([data-palette="stock"]) .paginav a:hover,
+html:not([data-palette="stock"]) .terms-tags a:hover {
+    background: var(--accent-soft);
+    color: var(--primary);
+}
+
+html:not([data-palette="stock"]) .breadcrumbs a:hover,
+html:not([data-palette="stock"]) .toc a:hover {
+    color: var(--accent);
+}
+
+html:not([data-palette="stock"]) ::selection {
+    background: var(--accent-soft);
+    color: var(--primary);
+}
+
+/* Code blocks: no violet keywords, readable comments and line numbers */
+html:not([data-palette="stock"]) .chroma .k,
+html:not([data-palette="stock"]) .chroma .kp,
+html:not([data-palette="stock"]) .chroma .kr,
+html:not([data-palette="stock"]) .chroma .nt {
+    color: var(--code-keyword);
+}
+
+html:not([data-palette="stock"]) .chroma .c,
+html:not([data-palette="stock"]) .chroma .ch,
+html:not([data-palette="stock"]) .chroma .cm,
+html:not([data-palette="stock"]) .chroma .c1,
+html:not([data-palette="stock"]) .chroma .cs,
+html:not([data-palette="stock"]) .chroma .cp,
+html:not([data-palette="stock"]) .chroma .cpf,
+html:not([data-palette="stock"]) .chroma .sd,
+html:not([data-palette="stock"]) .chroma .sh,
+html:not([data-palette="stock"]) .chroma .ln,
+html:not([data-palette="stock"]) .chroma .lnt {
+    color: var(--code-comment);
+}
+
+/* Keyboard focus is always visible, in every palette */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* "Increase contrast" in the OS: lift secondary text to body text */
+@media (prefers-contrast: more) {
+    html:root[data-palette][data-theme] {
+        --secondary: var(--content);
+        --content: var(--primary);
+        --border: var(--tertiary);
+    }
+}

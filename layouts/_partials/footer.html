@@ -110,19 +110,8 @@
 {{- end }}
 
 {{- if (not site.Params.disableThemeToggle) }}
-<script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
-    })
-
-</script>
+{{- $picker := resources.Get "js/theme-picker.js" | js.Build (dict "params" (dict "defaultMode" (site.Params.defaultTheme | default "auto"))) | resources.Minify | fingerprint }}
+<script src="{{ $picker.RelPermalink }}" integrity="{{ $picker.Data.Integrity }}" crossorigin="anonymous"></script>
 {{- end }}
 
 {{- if (and (eq .Kind "page") (ne .Layout "archives") (ne .Layout "search") (.Param "ShowCodeCopyButtons")) }}

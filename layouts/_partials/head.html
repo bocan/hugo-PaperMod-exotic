@@ -103,7 +103,7 @@
 
 <noscript>
     <style>
-        #theme-toggle,
+        .theme-picker,
         .top-link {
             display: none;
         }
@@ -140,37 +140,29 @@
 
 {{- /* theme-toggle is enabled */}}
 {{- if (not site.Params.disableThemeToggle) }}
-{{- /* theme is light */}}
-{{- if (eq site.Params.defaultTheme "light") }}
+{{- /* Restore the saved palette and brightness before first paint (theme-picker.js keeps them in sync) */}}
+{{- $paletteIds := slice }}
+{{- range site.Data.palettes }}{{ $paletteIds = $paletteIds | append .id }}{{ end }}
 <script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    }
-
+    (function () {
+        var root = document.documentElement;
+        var mode = null, palette = null;
+        try {
+            mode = localStorage.getItem("pref-theme");
+            palette = localStorage.getItem("pref-palette");
+        } catch (e) { }
+        if (palette && {{ $paletteIds | jsonify | safeJS }}.indexOf(palette) !== -1) {
+            root.dataset.palette = palette;
+        }
+        if (mode !== "light" && mode !== "dark" && mode !== "auto") {
+            mode = {{ site.Params.defaultTheme | default "auto" }};
+        }
+        if (mode === "auto") {
+            mode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.dataset.theme = mode;
+    })();
 </script>
-{{- /* theme is dark */}}
-{{- else if (eq site.Params.defaultTheme "dark") }}
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-{{- else }}
-{{- /* theme is auto */}}
-<script>
-    if (localStorage.getItem("pref-theme") === "dark") {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else if (localStorage.getItem("pref-theme") === "light") {
-       document.querySelector("html").dataset.theme = 'light';
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.querySelector("html").dataset.theme = 'dark';
-    } else {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script>
-{{- end }}
 {{- /* theme-toggle is disabled and theme is auto */}}
 {{- else if (and (ne site.Params.defaultTheme "light") (ne site.Params.defaultTheme "dark"))}}
 <script>

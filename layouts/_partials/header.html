@@ -39,26 +39,42 @@
             {{- if $lsenabled }}
             <div class="logo-switches">
                 {{- if (not site.Params.disableThemeToggle) }}
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
+                <div class="theme-picker" id="theme-picker">
+                    <button id="theme-picker-btn" class="theme-picker-btn" type="button" accesskey="t"
+                        title="Colour theme (Alt + T)" aria-label="Colour theme" aria-haspopup="dialog"
+                        aria-expanded="false" aria-controls="theme-menu">
+                        <span class="tp-swatch" aria-hidden="true"></span>
+                    </button>
+                    <div id="theme-menu" class="theme-menu" role="dialog" aria-label="Colour theme" hidden>
+                        <p class="tp-label" id="tp-mode-label">Brightness</p>
+                        <div class="tp-modes" role="group" aria-labelledby="tp-mode-label">
+                            <button type="button" data-mode-option="light" aria-pressed="false">Light</button>
+                            <button type="button" data-mode-option="dark" aria-pressed="false">Dark</button>
+                            <button type="button" data-mode-option="auto" aria-pressed="false"
+                                title="Follow your device setting">Auto</button>
+                        </div>
+                        <p class="tp-label" id="tp-palette-label">Palette</p>
+                        <ul class="tp-list" role="group" aria-labelledby="tp-palette-label">
+                            {{- range site.Data.palettes }}
+                            <li>
+                                <button type="button" class="tp-option" data-palette-option="{{ .id }}"
+                                    data-preview="{{ .id }}" aria-pressed="false">
+                                    <span class="tp-dots" aria-hidden="true"><i class="tp-d1"></i><i class="tp-d2"></i><i class="tp-d3"></i></span>
+                                    <span class="tp-text">
+                                        <span class="tp-name">{{ .name }}</span>
+                                        <span class="tp-blurb">{{ .blurb }}</span>
+                                    </span>
+                                    <svg class="tp-check" aria-hidden="true" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                </button>
+                            </li>
+                            {{- end }}
+                        </ul>
+                    </div>
+                </div>
                 {{- end }}
                 
                 {{- if (not site.Params.disableLangToggle) }}

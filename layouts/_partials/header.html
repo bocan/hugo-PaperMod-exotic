@@ -55,7 +55,7 @@
                         </div>
                         <p class="tp-label" id="tp-palette-label">Palette</p>
                         <ul class="tp-list" role="group" aria-labelledby="tp-palette-label">
-                            {{- range site.Data.palettes }}
+                            {{- range hugo.Data.palettes }}
                             <li>
                                 <button type="button" class="tp-option" data-palette-option="{{ .id }}"
                                     data-preview="{{ .id }}" aria-pressed="false">

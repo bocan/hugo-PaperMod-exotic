@@ -142,7 +142,7 @@
 {{- if (not site.Params.disableThemeToggle) }}
 {{- /* Restore the saved palette and brightness before first paint (theme-picker.js keeps them in sync) */}}
 {{- $paletteIds := slice }}
-{{- range site.Data.palettes }}{{ $paletteIds = $paletteIds | append .id }}{{ end }}
+{{- range hugo.Data.palettes }}{{ $paletteIds = $paletteIds | append .id }}{{ end }}
 <script>
     (function () {
         var root = document.documentElement;

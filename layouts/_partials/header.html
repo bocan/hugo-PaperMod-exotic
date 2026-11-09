@@ -2,6 +2,11 @@
     <nav class="header-nav">
         <div class="logo">
             {{- $label_text := (site.Params.label.text | default site.Title) }}
+            {{- /* Terminal-style path: "> $ /home/chris/" on the home page,
+                   "> $ /home/chris/about/" on /about/, etc. Pure server-side:
+                   each page bakes in its own .RelPermalink, so it "changes"
+                   as you navigate. partialCached keys on .Page (see baseof). */ -}}
+            {{- $prompt := printf "/home/chris%s" .RelPermalink }}
             {{- if site.Title }}
             <a href="{{ "" | absLangURL }}" accesskey="h" title="{{ $label_text }} (Alt + H)">
                 {{- if site.Params.label.icon }}
@@ -25,7 +30,7 @@
                 {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
                     {{ site.Params.label.iconSVG | safeHTML }}
                 {{- end -}}
-                {{- $label_text -}}
+                <span class="term-prompt">&gt; $ {{ $prompt }}</span><span class="term-cursor" aria-hidden="true"></span>
             </a>
             {{- end }}
 

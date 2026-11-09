@@ -1,7 +1,10 @@
 {{- $meta := slice }}
 
 {{- if not .Date.IsZero -}}
-    {{- $meta = $meta | append (printf "<span title='%s'>%s</span>" (.Date | time.Format "2006-01-02T15:04:05-07:00") (.Date | time.Format (default ":date_long" site.Params.DateFormat))) }}
+    {{- $meta = $meta | append (printf "<span title='%s'>Published %s of %s, %s</span>" (.Date | time.Format "2006-01-02T15:04:05-07:00") (.Date | time.Format "2" | humanize) (.Date | time.Format "January") (.Date | time.Format "2006")) }}
+    {{- if and .Lastmod (ne (.Lastmod.Format "2006-01-02") (.PublishDate.Format "2006-01-02")) }}
+        {{- $meta = $meta | append (printf "<span title='%s'>Updated %s of %s, %s</span>" (.Lastmod | time.Format "2006-01-02T15:04:05-07:00") (.Lastmod | time.Format "2" | humanize) (.Lastmod | time.Format "January") (.Lastmod | time.Format "2006")) }}
+    {{- end }}
 {{- end }}
 
 {{- if (.Param "ShowReadingTime") -}}

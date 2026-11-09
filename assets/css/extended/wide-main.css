@@ -1,0 +1,17 @@
+:root {
+    --main-width: 820px;
+}
+
+@media (min-width: 900px) {
+    .header-nav {
+        flex-wrap: nowrap;
+    }
+
+    .logo {
+        flex-shrink: 0;
+    }
+
+    #menu {
+        min-width: 0;
+    }
+}

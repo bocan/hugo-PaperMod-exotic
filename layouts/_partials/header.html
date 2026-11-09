@@ -30,7 +30,8 @@
                 {{- else if hasPrefix site.Params.label.iconSVG "<svg" }}
                     {{ site.Params.label.iconSVG | safeHTML }}
                 {{- end -}}
-                <span class="term-prompt">&gt; $ {{ $prompt }}</span><span class="term-cursor" aria-hidden="true"></span>
+                {{- /* <wbr> after each "/" lets a long path wrap at directory boundaries */}}
+                <span class="term-prompt">&gt;&nbsp;$&nbsp;{{ replace (htmlEscape $prompt) "/" "/<wbr>" | safeHTML }}<span class="term-cursor" aria-hidden="true"></span></span>
             </a>
             {{- end }}
 

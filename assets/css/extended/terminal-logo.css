@@ -1,11 +1,41 @@
 /* Terminal-style logo prompt: "> $ /home/chris/" with a blinking block cursor.
    Rendered server-side in layouts/_partials/header.html. */
 
-.logo a .term-prompt {
-    font-family: var(--code-font, ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Code", Consolas, monospace);
-    white-space: nowrap;
+/* Let the logo shrink inside the header row instead of pushing the page
+   wider than the screen. */
+.logo,
+.logo a {
+    min-width: 0;
+    max-width: 100%;
 }
 
+.logo a {
+    /* Keep the one-line header height when the prompt wraps */
+    min-height: var(--header-height);
+}
+
+/* Keep the theme picker beside the prompt: the prompt wraps, not the row */
+.logo {
+    flex-wrap: nowrap;
+}
+
+.logo a svg,
+.logo a img,
+.logo-switches {
+    flex-shrink: 0;
+}
+
+.logo a .term-prompt {
+    min-width: 0;
+    font-family: var(--code-font, ui-monospace, SFMono-Regular, Menlo, Monaco, "Cascadia Code", Consolas, monospace);
+    /* Wrap only where needed: after "/" (<wbr> in the markup) or at a hyphen */
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.3;
+    padding-block: 6px;
+}
+
+/* The cursor sits inside the prompt text, so it follows the last character */
 .logo a .term-cursor {
     display: inline-block;
     width: 0.55ch;
@@ -19,6 +49,16 @@
 @keyframes term-cursor-blink {
     50% {
         opacity: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo a {
+        font-size: 20px;
+    }
+
+    .logo a .term-prompt {
+        padding-block: 8px;
     }
 }
 

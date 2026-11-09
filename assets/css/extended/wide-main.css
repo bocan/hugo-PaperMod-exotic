@@ -2,11 +2,9 @@
     --main-width: 820px;
 }
 
+/* The header must be able to wrap: on long URLs the terminal prompt needs the
+   full row, and the menu drops below it instead of shrinking to zero width. */
 @media (min-width: 900px) {
-    .header-nav {
-        flex-wrap: nowrap;
-    }
-
     .logo {
         flex-shrink: 0;
     }
